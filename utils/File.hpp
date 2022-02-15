@@ -19,6 +19,10 @@ public:
     int getEdgesNumber();
     int end();
     void print();
+    int getFirstVertex(std::string line);
+    int getSecondVertex(std::string line);
+    int getWeight(std::string line);
+    bool lineHasWeight(std::string line);
 };
 
 File::File(std::string filename) {
@@ -45,12 +49,28 @@ int File::end() {
     return this->file.eof();
 }
 
+void File::print() {
+    std::cout << this->file.rdbuf() << std::endl;
+}
+
+int File::getFirstVertex(std::string line) {
+    return this->convertCharToInt(line[0]);
+}
+
+int File::getSecondVertex(std::string line) {
+    return this->convertCharToInt(line[2]);
+}
+
+int File::getWeight(std::string line) {
+    return this->convertCharToInt(line[4]);
+}
+
 int File::convertCharToInt(char character) {
     return character - '0';
 }
 
-void File::print() {
-    std::cout << this->file.rdbuf() << std::endl;
+bool File::lineHasWeight(std::string line) {
+    return line[4] != '\0';
 }
 
 #endif
