@@ -8,10 +8,12 @@ class Graph
 {
     protected:
         int vertexesNumber, edgesNumber;
-        std::vector<std::vector<std::pair<int, int>>> edges;
     public:
+        std::vector<std::vector<std::pair<int, int>>> edges;
         Graph(int vertexNumber, int edgesNumber);
         void addEdge(int vertex1, int vertex2, int weight = 1);
+        int getVertexesNumber();
+        int getEdgesNumber();
         void show();
 };
 
@@ -34,10 +36,20 @@ void Graph::show() {
 		for(auto iterator = this->edges[currentVertex].begin(); iterator != this->edges[currentVertex].end(); iterator++) {
             int vertex = iterator->first;
             int weight = iterator->second;
-            std::cout << "adjacency: " << vertex << " with weight " << weight << std::endl;
+            std::cout << "adjacency: vertex " << vertex << " with weight " << weight << std::endl;
         }
         std::cout << std::endl;
 	}
+}
+
+int Graph::getVertexesNumber() {
+    return this->vertexesNumber;
+}
+
+
+
+int Graph::getEdgesNumber() {
+    return this->edgesNumber;
 }
 
 #endif

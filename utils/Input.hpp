@@ -9,39 +9,46 @@ class Input
     private:
         std::string filename;
         int initialVertex;
-        int finalVertex;
+        int finalVertex = -1;
     public:
         void treat(int argc, char *argv[]);
         void setFilename(std::string filename);
         void setInitialVertex(int vertex);
         void setFinalVertex(int vertex);
         int getInitialVertex();
+        bool hasFinalVertex();
         int getFinalVertex();
         std::string getFilename();
 };
 
 void Input::treat(int argc, char *argv[]) {
-    for(;;) {
-        switch(getopt(argc, argv, "hf:si:l:")) {
+    int option;
+    while(optind < argc) {
+        if((option = getopt(argc, argv, "hf:si:l:")) != -1) {
+            switch (option) {
             case 'h':
-                std::cout << "mostra o help!" << std::endl;
+                std::cout << "-h: mostra o help" << std::endl;
+                std::cout << "-f <arquivo>: indica o arquivo que contém o grafo de entrada" << std::endl;
+                std::cout << "-s: mostra a solução em ordem crescente" << std::endl;
+                std::cout << "-i <vertice>: define um vértice inicial (dependendo do algoritmo)" << std::endl;
+                std::cout << "-l <vertice>: define um vértice final (dependendo do algoritmo)" << std::endl;
                 break;
             case 'f': 
                 this->setFilename(optarg);
-                continue;
+                break;
             case 's':
                 std::cout << "Mostra a solução!" << std::endl;
-                continue;
+                break;
             case 'i':
                 this->setInitialVertex(atoi(optarg));
-                continue;
+                break;
             case 'l':
                 this->setFinalVertex(atoi(optarg));
-                continue;
-            case -1:
                 break;
+            default:
+                break;
+            }
         }
-        break;
     }
 }
 
@@ -59,6 +66,10 @@ void Input::setFinalVertex(int vertex) {
 
 int Input::getInitialVertex() {
     return this->initialVertex;
+}
+
+bool::Input::hasFinalVertex() {
+    return this->finalVertex != -1;
 }
 
 int Input::getFinalVertex() {
