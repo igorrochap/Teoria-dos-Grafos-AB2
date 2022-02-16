@@ -46,15 +46,15 @@ int main(int argc, char *argv[]) {
     Input input;
     input.treat(argc, argv);
     Graph *graph = buildGraph(input);
-    std::vector<int> distance = dijkstra(graph, input.getInitialVertex());
+    std::vector<int> distances = dijkstra(graph, input.getInitialVertex());
     for(int i = 1; i <= graph->getVertexesNumber(); i++) {
         if(input.hasFinalVertex()) {
             if(input.getFinalVertex() == i) {
-                std::cout << "Distance from " << input.getInitialVertex() << " to " << i << ": "<< distance[i] << std::endl;
+                std::cout << "Distance from " << input.getInitialVertex() << " to " << i << ": "<< distances[i] << std::endl;
                 break;
             }
         } else {
-            std::cout << "Distance from " << input.getInitialVertex() << " to " << i << ": "<< distance[i] << std::endl;
+            std::cout << "Distance from " << input.getInitialVertex() << " to " << i << ": "<< distances[i] << std::endl;
         }
     }
     return 0;
