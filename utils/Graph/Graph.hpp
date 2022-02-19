@@ -20,7 +20,7 @@ class Graph
 Graph::Graph(int vertexesNumber, int edgesNumber) {
     this->vertexesNumber = vertexesNumber;
     this->edgesNumber = edgesNumber;
-    while(this->edges.size() <= edgesNumber){
+    while(this->edges.size() <= this->vertexesNumber){
 		this->edges.push_back({});
 	}
 }

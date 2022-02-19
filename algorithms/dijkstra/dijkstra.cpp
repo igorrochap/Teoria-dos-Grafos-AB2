@@ -23,19 +23,19 @@ Graph *buildGraph(Input input) {
 
 std::vector<int> dijkstra(Graph *graph, int initialVertex) {
     std::vector<int> distance(graph->getVertexesNumber(), INFINITY);
-    std::priority_queue <std::pair<int, int>, std::vector<std::pair<int, int> >, std::greater<std::pair<int, int>>> minHeap;
+    std::priority_queue <std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<std::pair<int, int>>> heap;
     distance[initialVertex] = 0;
-    minHeap.push(std::make_pair(distance[initialVertex], initialVertex));
-    while(!minHeap.empty()) {
-        int expandedVertex = minHeap.top().second;
-        minHeap.pop();
+    heap.push(std::make_pair(distance[initialVertex], initialVertex));
+    while(!heap.empty()) {
+        int expandedVertex = heap.top().second;
+        heap.pop();
         std::vector<std::pair<int, int>>::iterator iterator;
         for(iterator = graph->edges[expandedVertex].begin(); iterator != graph->edges[expandedVertex].end(); iterator++) {
             int currentAdjacentVertex = iterator->first;
             int edgeWeight = iterator->second;
             if(distance[currentAdjacentVertex] > distance[expandedVertex] + edgeWeight) {
                 distance[currentAdjacentVertex] = distance[expandedVertex] + edgeWeight;
-                minHeap.push(std::make_pair(distance[currentAdjacentVertex], currentAdjacentVertex));
+                heap.push(std::make_pair(distance[currentAdjacentVertex], currentAdjacentVertex));
             }
         }
     }

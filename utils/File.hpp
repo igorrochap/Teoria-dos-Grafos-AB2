@@ -62,6 +62,9 @@ int File::getSecondVertex(std::string line) {
 }
 
 int File::getWeight(std::string line) {
+    if(line[4] == '-') {
+        return - this->convertCharToInt(line[5]);
+    }
     return this->convertCharToInt(line[4]);
 }
 
