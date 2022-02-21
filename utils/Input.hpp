@@ -10,6 +10,7 @@ class Input
         std::string filename;
         int initialVertex;
         int finalVertex = -1;
+        bool showSolution = false;
     public:
         void treat(int argc, char *argv[]);
         void setFilename(std::string filename);
@@ -18,6 +19,7 @@ class Input
         int getInitialVertex();
         bool hasFinalVertex();
         int getFinalVertex();
+        bool showPath();
         std::string getFilename();
 };
 
@@ -37,7 +39,7 @@ void Input::treat(int argc, char *argv[]) {
                 this->setFilename(optarg);
                 break;
             case 's':
-                std::cout << "Mostra a solução!" << std::endl;
+                this->showSolution = true;
                 break;
             case 'i':
                 this->setInitialVertex(atoi(optarg));
@@ -74,6 +76,10 @@ bool::Input::hasFinalVertex() {
 
 int Input::getFinalVertex() {
     return this->finalVertex;
+}
+
+bool Input::showPath() {
+    return this->showSolution;
 }
 
 std::string Input::getFilename() {

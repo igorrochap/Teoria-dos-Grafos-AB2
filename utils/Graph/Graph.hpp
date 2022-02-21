@@ -31,7 +31,7 @@ void Graph::addEdge(int vertex1, int vertex2, int weight) {
 }
 
 void Graph::show() {
-    for(int currentVertex = 1; currentVertex <= edgesNumber; currentVertex++){
+    for(int currentVertex = 1; currentVertex <= this->vertexesNumber; currentVertex++){
 		std::cout << "vertex " << currentVertex << ":" << std::endl;
 		for(auto iterator = this->edges[currentVertex].begin(); iterator != this->edges[currentVertex].end(); iterator++) {
             int vertex = iterator->first;
