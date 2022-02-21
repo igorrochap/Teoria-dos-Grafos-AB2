@@ -64,9 +64,10 @@ int main(int argc, char *argv[]) {
     Graph *graph = buildGraph(input);
     std::vector<int> previous = prim(graph, input.getInitialVertex());
     if(input.showPath()) {
+        std::cout << "Minimum Spanning Tree edges:" << std::endl;
         for(int i = 1; i <= graph->getVertexesNumber(); i++) {
             if(previous[i] != -1) {
-                std::cout << "(" << previous[i] << ", " << i << ")"<< std::endl;
+                std::cout << "(" << previous[i] << ", " << i << ")" << std::endl;
             }
         }
     }
