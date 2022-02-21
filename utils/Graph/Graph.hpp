@@ -10,10 +10,11 @@ class Graph
         int vertexesNumber, edgesNumber;
     public:
         std::vector<std::vector<std::pair<int, int>>> edges;
-        Graph(int vertexNumber, int edgesNumber);
+        Graph(int vertexesNumber, int edgesNumber);
         void addEdge(int vertex1, int vertex2, int weight = 1);
         int getVertexesNumber();
         int getEdgesNumber();
+        std::vector<std::pair<int, std::pair<int, int>>> getEdges();
         void show();
 };
 
@@ -30,6 +31,27 @@ void Graph::addEdge(int vertex1, int vertex2, int weight) {
     this->edges[vertex2].push_back(std::make_pair(vertex1, weight));
 }
 
+int Graph::getVertexesNumber() {
+    return this->vertexesNumber;
+}
+
+int Graph::getEdgesNumber() {
+    return this->edgesNumber;
+}
+
+std::vector<std::pair<int, std::pair<int, int>>> Graph::getEdges() {
+    std::vector<std::pair<int, std::pair<int, int>>> edges;
+    for(int vertex = 1; vertex <= this->vertexesNumber; vertex++) {
+        std::vector<std::pair<int, int>>::iterator iterator;
+        for(iterator = this->edges[vertex].begin(); iterator != this->edges[vertex].end(); iterator++) {
+            int adjacentVertex = iterator->first;
+            int weight = iterator->second;
+            edges.push_back(std::make_pair(vertex, std::make_pair(adjacentVertex, weight)));
+        }
+    }
+    return edges;
+}
+
 void Graph::show() {
     for(int currentVertex = 1; currentVertex <= this->vertexesNumber; currentVertex++){
 		std::cout << "vertex " << currentVertex << ":" << std::endl;
@@ -40,16 +62,6 @@ void Graph::show() {
         }
         std::cout << std::endl;
 	}
-}
-
-int Graph::getVertexesNumber() {
-    return this->vertexesNumber;
-}
-
-
-
-int Graph::getEdgesNumber() {
-    return this->edgesNumber;
 }
 
 #endif
