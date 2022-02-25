@@ -2,7 +2,7 @@
 
 <h3>Igor Rocha Pereira e Matheus Alves Fireman</h3>
   
- Os algoritmos implementados foram: Bellman-Ford, Dijkstra, Kruskal e Prim.
+ Os algoritmos implementados foram: Bellman-Ford, Dijkstra, Kruskal e Prim. Eles estão dentro da pasta "algorithms", em suas respectivas pastas com seus respectivos arquivos de entrada e makefile.
  
  ## Algumas considerações
  <li>O parâmetro "-o" não foi implementado em nenhum dos algoritmos.
